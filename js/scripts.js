@@ -48,6 +48,16 @@ const CalcBtn = document.querySelector("#calc-btn");
 
 const clearBtn = document.querySelector("#clear-btn");
 
+const calcContainer = document.querySelector("#calc-container")
+
+const resultContainer = document.querySelector("#result-container")
+
+const  imcNumber = document.querySelector("#imc-number span")
+
+const imcinfo = document.querySelector("#imc-info span")
+
+const backBtn = document.querySelector("#back-btn")
+
 // Funções
 function createTable(data) {
   data.forEach((item) => {
@@ -87,7 +97,9 @@ function validDigits(text) {
 function CalcImc(weight,height) {
   const imc = (weight / (height * height)).toFixed(1);
 
-  return imc
+  return imc;
+
+  
 }
 
 [heightInput, weightInput].forEach((el) => {
@@ -97,9 +109,14 @@ function CalcImc(weight,height) {
   });
 });
 
+function showOrHIdeResults() {
+  calcContainer.classList.toggle("hide");
+  resultContainer.classList.toggle("hide");
+}
+
 CalcBtn.addEventListener("click", (e) => {
   e.preventDefault();
-
+  
   const weight = weightInput.value.replace(",", ".");
   const height = heightInput.value.replace(",", ".");
 
@@ -117,6 +134,9 @@ CalcBtn.addEventListener("click", (e) => {
 
   if(!info) return
 
+  imcNumber.innerText = imc
+  imcinfo.innerText = info
+  showOrHIdeResults() ;
 });
 
 clearBtn.addEventListener("click", (e) => {
