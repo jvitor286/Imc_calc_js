@@ -73,4 +73,27 @@ function createTable(data) {
 
 // Inicialização
 createTable(data);
+
 // Eventos
+function cleanInputs() {
+  heightInput.value = "";
+  weightInput.value = "";
+}
+
+function validDigits(text) {
+  return text.replace(/[^0-9,]/g, "");
+}
+
+[heightInput, weightInput].forEach((el) => {
+  el.addEventListener("input", (e) => {
+    
+    const updatedValue = validDigits(e.target.value);
+    e.target.value = updatedValue;
+  });
+});
+
+clearBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  cleanInputs();
+});
